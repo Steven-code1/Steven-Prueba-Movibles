@@ -3,7 +3,8 @@ import multer from "multer";
 import * as dotenv from 'dotenv';
 import {v4 as uuidv4} from 'uuid';
 import express, {response} from "express"
-import {process_doc} from "./lang_script";
+//import {process_doc} from "./lang_script";
+import {process_doc} from "./lang_lotes"
 
 dotenv.config()
 const app = express()
