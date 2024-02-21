@@ -32,8 +32,11 @@ const upload = multer({
 import {OpenAIApi, Configuration} from 'openai'
 import * as path from "path";
 
+
+const millave = process.env.OPENAI_API_KEY;
+
 const configuration = new Configuration({
-    apiKey: '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'
+    apiKey: millave
 })
 const openai = new OpenAIApi(configuration)
 
@@ -41,6 +44,7 @@ const generatePrompt = (numberToConvert: number) => {
     return ` Tu tienes un rol de convertidor binario y requiero que conviertes este numero ${numberToConvert} a  binario`
 
 }
+
 
 let names = [
     {
@@ -100,6 +104,44 @@ app.post('/openapi', async (req, res) => {
     // @ts-ignore
     res.send({result: completion.data.choices[0].text.trim(), token: completion.data.usage.total_tokens})
 })
+
+
+// traductor ***************************************************
+
+const generateTranslationPrompt = (textToTranslate: string, selectLanguage: string) => {
+    return `Tu tienes un rol de traductor y requiero que traduzcas al ${selectLanguage} este texto: "${textToTranslate}"`;
+};
+
+app.post('/translate', async (req, res) => {
+    const {prompt, language} = req.body
+    const completion = await openai.createCompletion({
+        model: 'gpt-3.5-turbo-instruct',
+        prompt: generateTranslationPrompt(prompt, language),
+        temperature: 0.1
+    })
+
+    // @ts-ignore
+    res.send({result: completion.data.choices[0].text.trim(), token: completion.data.usage.total_tokens})
+})
+
+
+// texto a binario ***********************************************
+
+const generateTextbinaPrompt = (textToConvert: string) => {
+    return `Eres un traductor de números en texto a numero binario, entonces quiero que traduzcas este número en texto a binario: ${textToConvert}`;
+};
+app.post('/textbina', async (req, res) => {
+    const {prompt} = req.body
+    const completion = await openai.createCompletion({
+        model: 'gpt-3.5-turbo-instruct',
+        prompt: generateTextbinaPrompt(prompt),
+        temperature: 0.1
+    })
+
+    // @ts-ignore
+    res.send({result: completion.data.choices[0].text.trim(), token: completion.data.usage.total_tokens})
+})
+
 
 app.delete('/nombres/:id', (req, res) => {
     names = names.filter(n => n.id !== req.params.id)

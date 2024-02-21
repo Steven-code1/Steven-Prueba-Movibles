@@ -2,13 +2,13 @@ import React, {useState} from "react";
 import {TextInput, View, StyleSheet, Text, Button} from "react-native";
 
 
-const Chat = () => {
+const TextBina = () => {
     const [prompt, setPrompt] = useState('')
     const [result, setResult] = useState('')
 
     const getResultFromOpenApi = async () => {
         try {
-            const response = await fetch('http://localhost:9004/openapi', {
+            const response = await fetch('http://localhost:9004/textbina', {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json'
@@ -26,7 +26,7 @@ const Chat = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>
-                {'Ingrese El numero que desea convertir a binario'}
+                {'Ingrese El numero en texto que desea convertir a binario'}
             </Text>
             <TextInput style={styles.input} value={prompt} onChangeText={setPrompt}/>
             <Button title={'Enviar'} onPress={getResultFromOpenApi}/>
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Chat
+export default TextBina
