@@ -1,15 +1,16 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Navigation from './src/Navigation';
 
+import {SafeAreaView, StyleSheet} from 'react-native';
+
 export default function App() {
     return (
-        <NavigationContainer>
-            <Navigation/>
-        </NavigationContainer>
-    );
-}
+        <SafeAreaView style={{ flex:1 }}>
+            <Navigation />
+        </SafeAreaView>
+    )
+};
 
 const styles = StyleSheet.create({
     container: {

@@ -6,10 +6,11 @@ const discord = <Icon name={'discord'} size={50} color={'#721422'} />
 const twitch = <Icon name={'twitch'} size={50} color={'#721422'}/>
 const university = <Icon name={'university'} size={50} color={'#721422'}/>
 const whatsapp = <Icon name={'whatsapp'} size={50} color={'#721422'}/>
-const tiktok = <Icon name={'btc'} size={50} color={'#721422'}/>
+const binance = <Icon name={'btc'} size={50} color={'#721422'}/>
+const kwai = <Icon name={'kickstarter-k'} size={50} color={'#721422'}/>
 const ProfileCard = () => {
     const user = {
-        avatar: "https://wallpapercave.com/wp/wp9792381.jpg",
+        avatar: "https://media-bog2-2.cdn.whatsapp.net/v/t61.24694-24/424428878_1570739373728874_1831575078465885258_n.jpg?ccb=11-4&oh=01_AdQa1D_H46UcZs-ott_fTXvPnuaKEAw0ffzfEndcjfC-lw&oe=65E390E4&_nc_sid=e6ed6c&_nc_cat=105",
         coverPhoto: "https://wallpapercave.com/uwp/uwp3527615.jpeg",
         name: "Steven Ortiz (ง︡'-'︠)ง"
     }
@@ -49,7 +50,12 @@ const ProfileCard = () => {
 
                 <TouchableWithoutFeedback onPress={()=>
                     Linking.openURL('https://www.binance.com/es-LA/feed/profile/Square-Creator-9aec7d199319')}>
-                    {tiktok}
+                    {binance}
+                </TouchableWithoutFeedback>
+
+                <TouchableWithoutFeedback onPress={()=>
+                    Linking.openURL('https://www.kwai.com/es')}>
+                    {kwai}
                 </TouchableWithoutFeedback>
 
             </View>
